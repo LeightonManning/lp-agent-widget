@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>omdb widget</title>
+    <script>
+        const apiKey = "10e7f5c"
+        let filmTitle = "Shrek"
+        
+        
+        const getFilm = async () => {
+            const response = await fetch('http://www.omdbapi.com/?apikey='+apiKey+'&s='+filmTitle);
+            const myJson = await response.json(); //extract JSON from the http response
+            console.log(myJson);
+            updateSite(myJson);
+          }
+        const updateSite = (myJson) =>{
+            let tag = document.createElement("p");
+            var text = document.createTextNode("Response from api call"+myJson.Title);
+            tag.appendChild(text);
+            var element = document.getElementById("response");
+            element.appendChild(tag);
+        }
+    
+    </script>
+</head>
+<body>
+    <body>
+        <div id="omdbwidget">
+          <h1>Film Search</h1>
+            <div>
+                <label class="control-label" for="t">Title:</label>
+                <input type="text" id="t" name="t" class="input-small">
+                <label class="control-label" style="display: none;">Response:</label>
+                <button id="search-by-title-button" type="button"  class="btn-sm btn-primary" onclick="getFilm()">Search</button>
+            </div>
+            <br>
+            <div id="response">
+                <p>Response:</p>
+                  <table style="overflow-wrap: anywhere;">
+                  </table>
+                </div>
+            </div>
+            </form>
+            <button id="search-by-last-message" type="button" class="btn-sm btn-primary">Search from last customer's message</button>
+      </body>
+</body>
+</html>
