@@ -17,7 +17,7 @@
           }
         const updateSite = (myJson) =>{
             let tag = document.createElement("p");
-            var text = document.createTextNode("Response from api call"+myJson.Title);
+            var text = document.createTextNode("Response from api call :"+ myJson.Title + " " + myJson.Plot);
             tag.appendChild(text);
             var element = document.getElementById("response");
             element.appendChild(tag);
